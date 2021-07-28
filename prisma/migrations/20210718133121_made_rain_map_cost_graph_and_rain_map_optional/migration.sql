@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "experiment" ALTER COLUMN "rainGraph" DROP NOT NULL,
+ALTER COLUMN "costGraph" DROP NOT NULL,
+ALTER COLUMN "rainMap" DROP NOT NULL;

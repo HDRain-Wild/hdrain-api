@@ -1,0 +1,73 @@
+{
+  "name": "p3_back",
+  "version": "1.0.0",
+  "description": "api directory",
+  "main": "index.js",
+  "repository": "https://github.com/WildCodeSchool/hdrain-api-lyon-js-react-march21",
+  "author": "Heranca <heranca.kamalo@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^2.26.0",
+    "amqplib": "^0.8.0",
+    "argon2": "^0.27.2",
+    "assert": "^2.0.0",
+    "axios": "^0.21.1",
+    "connect-pg-simple": "^6.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-pg-session": "^1.1.0",
+    "express-session": "^1.17.2",
+    "faker": "^5.1.0",
+    "glob": "^7.1.7",
+    "joi": "^17.4.0",
+    "lint-staged": "^11.0.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.5.0",
+    "npm-run-all": "^4.1.5",
+    "pg": "^8.6.0",
+    "pg-promise": "^10.10.2",
+    "prisma": "2.26.0",
+    "shelljs": "^0.8.4"
+  },
+  "scripts": {
+    "start:watch": "nodemon app.js",
+    "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix",
+    "migrate": "npx prisma migrate dev",
+    "reset": "npx prisma migrate reset",
+    "mr": "npx prisma migrate dev && npx prisma migrate reset",
+    "start:server:watch": "nodemon app.js",
+    "lint": "eslint --fix .",
+    "start": "npm-run-all generate-db-client migrate:deploy start:server",
+    "generate-db-client": "npx prisma generate",
+    "migrate:deploy": "npx prisma migrate deploy",
+    "start:server": "node app.js",
+    "dev": "npm-run-all migrate start:watch",
+    "wait-for-db": "node ./scripts/wait-for-db.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+      "*.js": [
+        "eslint --fix",
+        "git add"
+      ]
+    }
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.5",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "supertest": "^4.0.2"
+  }
+}
